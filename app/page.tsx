@@ -3,10 +3,10 @@ import React from "react";
 
 const page = () => {
   return (
-    <div>
-      <div>
-        <h2>Oops!!🤭🤭🤭🤭</h2>
-        <p>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="grid gap-4">
+        <h2 className="text-6xl font-bold">Oops!!🤭🤭🤭🤭</h2>
+        <p className="max-w-lg text-base font-medium text-center text-gray-500 ">
           This assessment is directed to the settings page and you my
           friend🤗🤗🫂🫂 are not on the settings page
         </p>
