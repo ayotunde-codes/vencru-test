@@ -39,7 +39,15 @@ const page = () => {
           <form action="" className="grid gap-4">
             <label className="flex items-start space-x-2 ">
               <div className="radio-wrap">
-                <input type="radio" name="radio" id="" className="radio" />
+                <input
+                  type="radio"
+                  name="radio"
+                  id=""
+                  className="radio"
+                  value="first"
+                  onChange={radioOnchange}
+                  checked={radioValue === "first"}
+                />
               </div>
               <div className="grid">
                 <h6 className="text-sm font-medium text-gray-700 ">
@@ -57,9 +65,9 @@ const page = () => {
                   name="radio"
                   id=""
                   className="radio"
-                  value="first"
+                  value="second"
                   onChange={radioOnchange}
-                  checked={radioValue === "first"}
+                  checked={radioValue === "second"}
                 />
               </div>
               <div className="grid gap-3">
@@ -78,8 +86,6 @@ const page = () => {
                   <input
                     type="text"
                     value="second"
-                    onChange={radioOnchange}
-                    checked={radioValue === "second"}
                     className="flex-grow ml-2 text-base text-gray-900 bg-transparent outline-none focus:bg-transparent"
                   />
                 </div>
