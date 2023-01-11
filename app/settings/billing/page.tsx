@@ -9,7 +9,7 @@ import { cardData, tableDatas } from "../../components/data";
 const page = () => {
   const [cardValue, setCardValue] = useState("visa");
   const [addCard, setAddCard] = useState(false);
-  const cardOnchage = (e) => {
+  const cardOnchage = (e: any) => {
     setCardValue(e.target.value);
   };
 
