@@ -37,7 +37,7 @@ const SideBar = () => {
       <nav className="nav-scroll flex flex-col w-full max-h-[86vh] px-6 pb-8 gap-7 ">
         <div className="flex items-center px-3 py-2 border rounded-lg shadow-sm ">
           {/* search 🔎🔎 */}
-          <div className="relative w-5 h-5 ">
+          <div className="relative w-5 h-5 min-w-[1.25rem] min-h-[1.25rem]  ">
             <Image
               src="/assets/icons/search.svg"
               alt="search"
