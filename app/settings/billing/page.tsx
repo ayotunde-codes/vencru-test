@@ -85,7 +85,6 @@ const page = () => {
                   </div>
                   <input
                     type="text"
-                    value="second"
                     className="flex-grow ml-2 text-base text-gray-900 bg-transparent outline-none focus:bg-transparent"
                   />
                 </div>
