@@ -8,9 +8,13 @@ import { cardData, tableDatas } from "../../components/data";
 
 const page = () => {
   const [cardValue, setCardValue] = useState("visa");
+  const [radioValue, setRadioValue] = useState("first");
   const [addCard, setAddCard] = useState(false);
   const cardOnchage = (e: any) => {
     setCardValue(e.target.value);
+  };
+  const radioOnchange = (e: any) => {
+    setRadioValue(e.target.value);
   };
 
   return (
@@ -48,7 +52,15 @@ const page = () => {
             </label>
             <label className="flex items-start space-x-2 ">
               <div className="radio-wrap">
-                <input type="radio" name="radio" id="" className="radio" />
+                <input
+                  type="radio"
+                  name="radio"
+                  id=""
+                  className="radio"
+                  value="first"
+                  onChange={radioOnchange}
+                  checked={radioValue === "first"}
+                />
               </div>
               <div className="grid gap-3">
                 <h6 className="text-sm font-medium text-gray-700 ">
@@ -65,6 +77,9 @@ const page = () => {
                   </div>
                   <input
                     type="text"
+                    value="second"
+                    onChange={radioOnchange}
+                    checked={radioValue === "second"}
                     className="flex-grow ml-2 text-base text-gray-900 bg-transparent outline-none focus:bg-transparent"
                   />
                 </div>
