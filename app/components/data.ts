@@ -89,3 +89,18 @@ export const settingLinksData: Pick<IntLinksObject, "name" | "url">[] = [
     url: "/settings",
   },
 ];
+
+export const cardData = [
+  {
+    logo: "/assets/icons/visa.svg",
+    ending: "Visa ending in 1234",
+    expireDate: "Expiry 06/2024",
+    name: "visa",
+  },
+  {
+    logo: "/assets/icons/mastercard.svg",
+    ending: "Mastercard ending in 1234",
+    expireDate: "Expiry 06/2024",
+    name: "mastercard",
+  },
+];
