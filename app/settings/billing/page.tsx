@@ -85,7 +85,8 @@ const page = () => {
                   </div>
                   <input
                     type="text"
-                    className="flex-grow ml-2 text-base text-gray-900 bg-transparent outline-none focus:bg-transparent"
+                    disabled={radioValue !== "second"}
+                    className="flex-grow ml-2 text-base text-gray-900 bg-transparent outline-none disabled:cursor-not-allowed focus:bg-transparent"
                   />
                 </div>
               </div>
