@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import Avatar from "../../components/Avatar";
 import Card from "../../components/Card";
-import { cardData } from "../../components/data";
+import Column from "../../components/Column";
+import { cardData, tableDatas } from "../../components/data";
 
 const page = () => {
   const [cardValue, setCardValue] = useState("visa");
@@ -10,85 +12,10 @@ const page = () => {
   const cardOnchage = (e) => {
     setCardValue(e.target.value);
   };
-  const headers = [
-    {
-      name: "check-invoice",
-      classname: "flex-grow px-6 py-3 md:w-[12rem] xl:w-auto min-w-[12rem]",
-      value: () => (
-        <div className="flex items-center space-x-5">
-          <div className="relative w-5 h-5">
-            <Image
-              src="/assets/icons/check.svg"
-              alt="check all"
-              fill
-              style={{ objectFit: "contain" }}
-            />
-          </div>
-          <div className="flex items-center space-x-1">
-            <p className="text-xs font-medium text-gray-500 ">Invoice</p>
-            <div className="relative w-4 h-4">
-              <Image
-                src="/assets/icons/arrow-down.svg"
-                alt="arroe down"
-                fill
-                style={{ objectFit: "contain" }}
-              />
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      name: "amount",
-      classname: " px-6 py-3 w-32 max-w-36  ",
-      value: () => (
-        <>
-          <p className="text-xs font-medium text-left text-gray-500 ">Amount</p>
-        </>
-      ),
-    },
-    {
-      name: "date",
-      classname: "hidden lg:block px-6 py-3 w-32 max-w-36 ",
-      value: () => (
-        <>
-          <p className="text-xs font-medium text-left text-gray-500 ">Date</p>
-        </>
-      ),
-    },
-    {
-      name: "status",
-      classname: "hidden lg:block px-6 py-3 w-28 max-w-28  ",
-      value: () => (
-        <>
-          <p className="text-xs font-medium text-left text-gray-500 ">Status</p>
-        </>
-      ),
-    },
-    {
-      name: "user",
-      classname: "hidden lg:block px-6 py-3 ",
-      value: () => (
-        <>
-          <p className="text-xs font-medium text-left text-gray-500 ">
-            Users on plan
-          </p>
-        </>
-      ),
-    },
-    {
-      name: "download",
-      classname: "hidden lg:block px-6 py-3 ",
-      value: () => (
-        <>
-          <p className="w-5 text-xs font-medium text-gray-500 "></p>
-        </>
-      ),
-    },
-  ];
+
   return (
     <main className="">
-      <section>
+      <section className="px-4 lg:px-0">
         <div className="pb-5 border-b">
           <h2 className="text-lg font-medium text-gray-900 ">Payment method</h2>
           <p className="text-sm font-normal text-gray-500 ">
@@ -202,11 +129,11 @@ const page = () => {
         </div>
       </section>
       <section>
-        <div className="grid gap-3 mt-3 md:gap-0 md:flex">
+        <div className="grid gap-3 px-4 mt-3 lg:px-0 md:gap-0 md:flex">
           <h2 className="text-lg font-medium text-gray-900 ">
             Billing history
           </h2>
-          <div className=" px-4 py-[0.625rem] w-max flex items-center space-x-2 bg-white shadow-sm rounded-lg border border-gray-300 md:ml-auto">
+          <div className=" px-4 py-[0.625rem] cursor-pointer w-max flex items-center space-x-2 bg-white shadow-sm rounded-lg border border-gray-300 md:ml-auto">
             <div className="relative w-5 h-5">
               <Image
                 src="/assets/icons/download-cloud.svg"
@@ -220,7 +147,7 @@ const page = () => {
         </div>
         <div className="w-full bg-white border border-gray-200 rounded-lg shadow-md mt-7">
           <table className="w-full">
-            <thead className="sticky">
+            <thead className="sticky z-[6] top-44">
               <tr className="flex items-center w-full border border-gray-200 bg-gray-50">
                 {headers.map((head, ind) => (
                   <th key={head.name} className={head.classname}>
@@ -230,84 +157,15 @@ const page = () => {
               </tr>
             </thead>
             <tbody className="">
-              {/* {data.map((items, ind) => (
-                <tr key={ind} className="" onClick={items.onClick}>
-                  {items.data.map((val, index) => (
-								<td key={index} className=''>
-									<p>{val}</p>
-								</td>
-							))}
-                </tr>
-              ))} */}
-
-              <tr className="flex items-center w-full">
-                <td className="flex-grow px-6 py-3 md:w-[12rem] xl:w-auto min-w-[12rem] ">
-                  <div className="flex items-center space-x-5">
-                    <div className="relative w-5 h-5">
-                      <Image
-                        src="/assets/icons/check.svg"
-                        alt="check all"
-                        fill
-                        style={{ objectFit: "contain" }}
-                      />
-                    </div>
-
-                    <p className="text-sm font-medium text-gray-900 ">
-                      Basic Plan – Dec 2022
-                    </p>
-                  </div>
-                </td>
-                <td className="w-32 px-6 py-3 max-w-36">
-                  <>
-                    <p className="text-sm font-normal text-gray-500 ">
-                      USD $10.00
-                    </p>
-                  </>
-                </td>
-                <td className="w-32 px-6 py-3 max-w-36 ">
-                  <>
-                    <p className="text-sm font-normal text-gray-500 ">
-                      Dec 1, 2022
-                    </p>
-                  </>
-                </td>
-                <td className="px-6 py-3 w-28 max-w-28">
-                  <div className="flex items-center justify-center space-x-1 px-[0.315rem] py-[0.315rem] bg-[#ECFDF3] rounded-2xl">
-                    <div className="relative w-3 h-3 ">
-                      <Image
-                        src="/assets/icons/check-green.svg"
-                        alt="paid"
-                        fill
-                        style={{ objectFit: "contain" }}
-                      />
-                    </div>
-                    <p className="text-xs font-medium text-[#027A48] ">Paid</p>
-                  </div>
-                </td>
-                <td className="w-32 px-6 py-3 ">
-                  <div className="flex items-center justify-center space-x-1 px-[0.315rem] py-[0.315rem] bg-[#ECFDF3] rounded-2xl">
-                    <div className="relative w-3 h-3 ">
-                      <Image
-                        src="/assets/icons/check-green.svg"
-                        alt="paid"
-                        fill
-                        style={{ objectFit: "contain" }}
-                      />
-                    </div>
-                    <p className="text-xs font-medium text-[#027A48] ">Paid</p>
-                  </div>
-                </td>
-                <td className="px-6 py-3 ">
-                  <div className="relative w-5 h-5 ">
-                    <Image
-                      src="/assets/icons/download-cloud.svg"
-                      alt="download"
-                      fill
-                      style={{ objectFit: "contain" }}
-                    />
-                  </div>
-                </td>
-              </tr>
+              {tableDatas.map((v) => (
+                <Column
+                  invoice={v.invoice}
+                  paid={v.paid}
+                  amount={v.amount}
+                  date={v.date}
+                  avatars={v.avatars}
+                />
+              ))}
             </tbody>
           </table>
         </div>
@@ -317,3 +175,80 @@ const page = () => {
 };
 
 export default page;
+
+const headers = [
+  {
+    name: "check-invoice",
+    classname: "flex-grow px-6 py-3 md:w-[12rem] xl:w-auto min-w-[12rem]",
+    value: () => (
+      <div className="flex items-center space-x-5">
+        <div className="relative w-5 h-5">
+          <Image
+            src="/assets/icons/check.svg"
+            alt="check all"
+            fill
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+        <div className="flex items-center space-x-1">
+          <p className="text-xs font-medium text-gray-500 ">Invoice</p>
+          <div className="relative w-4 h-4">
+            <Image
+              src="/assets/icons/arrow-down.svg"
+              alt="arroe down"
+              fill
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    name: "amount",
+    classname: " px-6 py-3 w-32 xl:w-36 max-w-36  ",
+    value: () => (
+      <>
+        <p className="text-xs font-medium text-left text-gray-500 ">Amount</p>
+      </>
+    ),
+  },
+  {
+    name: "date",
+    classname: "hidden lg:block px-6 py-3 w-32 xl:w-36 max-w-36 ",
+    value: () => (
+      <>
+        <p className="text-xs font-medium text-left text-gray-500 ">Date</p>
+      </>
+    ),
+  },
+  {
+    name: "status",
+    classname: "hidden lg:block px-6 py-3 w-28 max-w-28  ",
+    value: () => (
+      <>
+        <p className="text-xs font-medium text-left text-gray-500 ">Status</p>
+      </>
+    ),
+  },
+  {
+    name: "user",
+    classname: "hidden lg:block px-6 py-3 w-44 max-w-44 ",
+    value: () => (
+      <>
+        <p className="text-xs font-medium text-left text-gray-500 ">
+          Users on plan
+        </p>
+      </>
+    ),
+  },
+  {
+    name: "download",
+    classname: "hidden lg:block px-6 py-3 ",
+    value: () => (
+      <>
+        <p className="w-5 text-xs font-medium text-gray-500 "></p>
+      </>
+    ),
+  },
+];

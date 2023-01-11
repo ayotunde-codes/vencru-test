@@ -3,4 +3,5 @@ export interface IntLinksObject {
   url: string;
   logo: string;
   notification?: boolean;
+  slug?: string;
 }

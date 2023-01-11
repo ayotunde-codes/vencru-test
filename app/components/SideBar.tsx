@@ -1,13 +1,15 @@
-"use-client";
-
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { IntLinksObject } from "../../typings";
 import { linksData } from "./data";
 import { fetchNotification } from "./utilz";
+import { useSelectedLayoutSegment } from "next/navigation";
+import cn from "classnames";
 
 const SideBar = () => {
+  const activeLink = useSelectedLayoutSegment();
   return (
     <header className="xl:w-[280px]  lg:w-64  ">
       <div className="sticky max-w-full px-6 py-8 bg-white ">
@@ -55,49 +57,17 @@ const SideBar = () => {
             // filter to remove the support and settings
             linksData
               .filter((v) => v.name !== "Settings" && v.name !== "Support")
-              .map(({ url, logo, name, notification }: IntLinksObject) => (
-                <Link
-                  href={url}
-                  key={name}
-                  className="flex items-center px-2 py-2 transition duration-150 rounded-md hover:bg-gray-100"
-                >
-                  <div className="flex space-x-2">
-                    <div className="relative w-6 h-6 ">
-                      <Image
-                        src={logo}
-                        alt={name}
-                        fill
-                        style={{ objectFit: "contain" }}
-                      />
-                    </div>
-                    <h4 className="text-base font-medium text-gray-700 ">
-                      {name}
-                    </h4>
-                  </div>
-                  {/* conditional if notification present */}
-                  {notification ? (
-                    <div className="ml-auto text-sm font-medium text-gray-700 bg-gray-100 rounded-2xl py-[2px] px-[10px]">
-                      10
-                    </div>
-                  ) : null}
-                </Link>
-              ))
-          }
-        </div>
-
-        {/* footer */}
-        <div className="">
-          {/* settings and support💁‍♂️💁🏼‍♂️ */}
-          <div className="flex flex-col gap-2 ">
-            {
-              // filter to remove all except the support and settings
-              linksData
-                .filter((v) => ["Settings", "Support"].includes(v.name))
-                .map(({ url, logo, name, notification }: IntLinksObject) => (
+              .map(
+                ({ url, logo, name, notification, slug }: IntLinksObject) => (
                   <Link
                     href={url}
                     key={name}
-                    className="flex items-center px-2 py-2 transition duration-150 rounded-md hover:bg-gray-100"
+                    className={cn(
+                      "flex items-center px-2 py-2 transition duration-150 rounded-md hover:bg-gray-100",
+                      {
+                        "bg-gray-50": slug === activeLink,
+                      }
+                    )}
                   >
                     <div className="flex space-x-2">
                       <div className="relative w-6 h-6 ">
@@ -119,7 +89,53 @@ const SideBar = () => {
                       </div>
                     ) : null}
                   </Link>
-                ))
+                )
+              )
+          }
+        </div>
+
+        {/* footer */}
+        <div className="">
+          {/* settings and support💁‍♂️💁🏼‍♂️ */}
+          <div className="flex flex-col gap-2 ">
+            {
+              // filter to remove all except the support and settings
+              linksData
+                .filter((v) => ["Settings", "Support"].includes(v.name))
+                .map(
+                  ({ url, logo, name, notification, slug }: IntLinksObject) => (
+                    <Link
+                      href={url}
+                      key={name}
+                      className={cn(
+                        "flex items-center px-2 py-2 transition duration-150 rounded-md hover:bg-gray-100",
+                        {
+                          "bg-gray-50": slug === activeLink,
+                        }
+                      )}
+                    >
+                      <div className="flex space-x-2">
+                        <div className="relative w-6 h-6 ">
+                          <Image
+                            src={logo}
+                            alt={name}
+                            fill
+                            style={{ objectFit: "contain" }}
+                          />
+                        </div>
+                        <h4 className="text-base font-medium text-gray-700 ">
+                          {name}
+                        </h4>
+                      </div>
+                      {/* conditional if notification present */}
+                      {notification ? (
+                        <div className="ml-auto text-sm font-medium text-gray-700 bg-gray-100 rounded-2xl py-[2px] px-[10px]">
+                          10
+                        </div>
+                      ) : null}
+                    </Link>
+                  )
+                )
             }
           </div>
           <div className="grid gap-4 px-4 py-5 mt-6 rounded-lg bg-gray-50">
