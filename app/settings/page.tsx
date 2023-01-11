@@ -7,7 +7,7 @@ const page = () => {
       <div className="flex flex-col items-center space-y-4">
         <h2 className="text-4xl font-bold lg:text-6xl">Great!🥳🥳</h2>
         <p className="max-w-lg text-base font-medium text-center text-gray-500 ">
-          Great Job, but you are still on step away from the assessment,
+          Great Job, but you are still one step away from the assessment,
           🤗🤗🫂🫂 You need to navigate to the Billing section.
         </p>
         <p className="max-w-lg text-base font-medium text-center text-purple-500">
